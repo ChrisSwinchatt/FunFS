@@ -1,0 +1,43 @@
+#!/bin/bash
+
+# Create a file of size $1 MiB which contains an Ext2 rev. 0 filesystem.
+# Returns the name of the file.
+function makefs {
+    local dev=$(mktemp)
+    local size=$1
+    dd if=/dev/zero of="$dev" bs=1M count=$size >&2
+    mke2fs -r0 "$dev" >&2
+    echo "$dev"
+}
+
+# Bind $1 to a loop device and mount at $2.
+# Returns the name of the loop device.
+function makeloop {
+    local dev="$1"
+    local mnt="$2"
+    local loop=$(losetup -f)
+    losetup -f "$dev" >&2
+    mount "$loop" "$mnt" >&2
+    echo "$loop"
+}
+
+# Clean up directory $1 and loop device $2.
+function cleanup {
+    local mnt="$1"
+    local loop="$2"
+    umount "$mnt" >&2
+    rm -rf "$mnt" >&2
+    losetup -d "$loop" >&2
+}
+
+# Randomly-generate file of size $1 MiB in directory $2.
+# Returns the name of the file.
+function create_file {
+    local file=$(mktemp -p "$2")
+    dd if=/dev/urandom of="$file" bs=1M count=$1 >&2
+    echo "$file"
+}
+
+logfile="logs/$0.log"
+
+echo "--------------------[ $(date) ]--------------------" >>"$logfile"

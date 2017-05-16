@@ -1,0 +1,88 @@
+name:               FunFS
+version:            0.1.0.0
+synopsis:           Demo Ext2 filesystem implementation in Haskell
+description:		FunFS is a lazy-evaluated, functional implementation of the Ext2 filesystem in Haskell.
+license:            MIT
+license-file:       LICENSE
+author:             Chris Swinchatt
+maintainer:         c.swinchatt1@uni.brighton.ac.uk
+copyright:          (c) 2017 Christopher Swinchatt
+category:           Data
+build-type:         Simple
+extra-source-files: ChangeLog.md
+cabal-version:      >=1.10
+
+library
+    exposed-modules:  Data.Filesystem.FunFS
+                    , Data.Filesystem.FunFS.API
+                    , Data.Filesystem.FunFS.API.Directory
+                    , Data.Filesystem.FunFS.API.File
+                    , Data.Filesystem.FunFS.API.Filesystem
+                    , Data.Filesystem.FunFS.API.Handle
+                    , Data.Filesystem.FunFS.API.HandleInfo
+                    , Data.Filesystem.FunFS.API.Mount
+                    , Data.Filesystem.FunFS.API.NodeType
+                    , Data.Filesystem.FunFS.API.OpenMode
+                    , Data.Filesystem.FunFS.API.Path
+                    , Data.Filesystem.FunFS.API.Permission
+                    , Data.Filesystem.FunFS.API.Seek
+                    , Data.Filesystem.FunFS.API.User
+                    ,  Data.Filesystem.FunFS.Ext2
+                    , Data.Filesystem.FunFS.Ext2.LowLevel.Block
+                    , Data.Filesystem.FunFS.Ext2.LowLevel.BlockGroupDescriptor
+                    , Data.Filesystem.FunFS.Ext2.LowLevel.Inode
+                    , Data.Filesystem.FunFS.Ext2.LowLevel.LinkedDirectory
+                    , Data.Filesystem.FunFS.Ext2.LowLevel.Struct
+                    , Data.Filesystem.FunFS.Ext2.LowLevel.SuperBlock
+                    , Data.Filesystem.FunFS.Ext2.Conf
+                    , Data.Filesystem.FunFS.Ext2.Directory
+                    , Data.Filesystem.FunFS.Ext2.DirEntry
+                    , Data.Filesystem.FunFS.Ext2.Node
+                    , Data.Filesystem.FunFS.Ext2.NodeType
+                    , Data.Filesystem.FunFS.Ext2.Path
+                    , Data.Filesystem.FunFS.Ext2.User
+                    , Data.Filesystem.FunFS.Ext2.Volume
+                    , Data.Filesystem.FunFS.Util.Bits
+                    , Data.Filesystem.FunFS.Util.Bytes
+                    , Data.Filesystem.FunFS.Util.Serialisable
+                    , Data.Filesystem.FunFS.Util.SizeOf
+                    , Data.Filesystem.FunFS.Util.Strings
+                    , Data.Filesystem.FunFS.Util.Time
+                    , Data.Filesystem.FunFS.Util.UUID
+    build-depends:      ghc >= 7.2.1
+                      , base >=4.9 && <4.10
+                      , binary >= 0.8.3 && < 0.9
+                      , bytestring >= 0.10.8.1 && < 0.11
+                      , mtl >=2.2 && <2.3
+                      , template-haskell >= 2.11 && < 2.12
+                      , time >= 1.6.0.1 && < 1.7
+                      , transformers >= 0.5.2 && <= 0.6
+                      , uuid >= 1.2.2
+    hs-source-dirs:     src
+    default-language:   Haskell2010
+
+-- EXAMPLES --
+executable mount
+    build-depends:      ghc >= 7.2.1, base >= 4.8 && < 4.10, FunFS >= 0.1
+    hs-source-dirs:     examples/Example0_Mount
+    main-is:            Main.hs
+    default-language:   Haskell2010
+
+executable readdir
+    build-depends:      ghc >= 7.2.1, base >= 4.8 && < 4.10, FunFS >= 0.1
+    hs-source-dirs:     examples/Example1_ReadDir
+    main-is:            Main.hs
+    default-language:   Haskell2010
+
+executable readfile
+    build-depends:      ghc >= 7.2.1, base >= 4.8 && < 4.10, FunFS >= 0.1, bytestring >= 0.10
+    hs-source-dirs:     examples/Example2_ReadFile
+    main-is:            Main.hs
+    default-language:   Haskell2010
+
+-- TESTS --
+executable units
+    build-depends:      ghc >= 7.2.1, base >= 4.8 && < 4.10, FunFS >= 0.1, bytestring >= 0.10, QuickCheck >= 2.9.2 && < 2.10
+    hs-source-dirs:     tests/UnitTests
+    main-is:            Main.hs
+    default-language:   Haskell2010

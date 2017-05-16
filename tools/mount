@@ -1,0 +1,8 @@
+#!/bin/bash
+
+. common
+
+echo "Creating 1 GiB filesystem"
+dev=$(makefs 1024 2>>"$logfile")
+bin/mount "$dev"
+rm "$dev"

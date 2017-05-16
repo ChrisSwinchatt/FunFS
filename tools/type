@@ -1,0 +1,17 @@
+#!/bin/bash
+
+. common
+
+
+echo "Creating 1 MiB filesystem"
+dev=$(makefs 1 2>>"$logfile")
+mnt=$(mktemp -d)
+loop=$(makeloop "$dev" "$mnt" 2>>"$logfile")
+file=$(mktemp -p "$mnt")
+name=$(basename "$file")
+echo -n "Enter text to be written to disk (^D when finished): "
+cat >"$file"
+cleanup "$mnt" "$loop"
+echo -n "Your text: "
+bin/readfile "$dev" "/$name"
+rm "$dev"

@@ -1,0 +1,15 @@
+#!/bin/bash
+
+. common
+
+echo "Creating 1 GiB filesystem"
+dev=$(makefs 1024 2>>"$logfile")
+mnt=$(mktemp -d)
+loop=$(makeloop "$dev" "$mnt" 2>>"$logfile")
+echo "Copying directory tree"
+cp -rf . "$mnt"
+cleanup "$mnt" "$loop"
+echo -n "File to dump: "
+read path
+bin/readfile "$dev" "$path"
+rm "$dev"

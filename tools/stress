@@ -1,0 +1,95 @@
+#!/bin/bash
+
+set -e
+
+. common
+
+function test1 {
+    echo "Test 1: Single large file"
+    local size=$1
+    local realsize=$[size * 2]
+    # Create and mount filesystem
+    echo "Creating $size MiB filesystem..."
+    local dev=$(makefs $realsize 2>>"$logfile")
+    local mnt=$(mktemp -d)
+    local loop=$(makeloop "$dev" "$mnt" 2>>"$logfile")
+    # Create file
+    echo "Filling with random data"
+    local file1=$(create_file "$size" "$mnt" 2>>"$logfile")
+    sync
+    # Remount the filesystem and read back the file.
+    echo "Reading back file"
+    local file2=$(mktemp)
+    local name=$(basename "$file1")
+    time valgrind bin/readfile "$dev" "/$name" >"$file2" 2>>"$logfile"
+    if diff "$file1" "$file2"; then
+        echo "Success"
+    else
+        echo "Failed"
+    fi
+    cleanup "$mnt" "$loop" 2>>"$logfile"
+    rm "$dev"
+}
+
+function test2 {
+    echo "Test 2: Many small files"
+    local size=$1
+    local realsize=$[size * 2]
+    # Create filesystem.
+    echo "Creating $size MiB filesystem..."
+    local dev=$(makefs $realsize 2>>"$logfile")
+    local mnt=$(mktemp -d)
+    local loop=$(makeloop "$dev" "$mnt" 2>>"$logfile")
+    local i=0
+    echo "Creating $size random files (1 MiB each)..."
+    while [[ $i -lt $size ]]; do
+        dd if=/dev/urandom of=$(mktemp -p "$mnt") bs=1M count=1 2>>"$logfile" >>"$logfile"
+        i=$[i + 1]
+    done
+    sync
+    echo "Reading back files..."
+    local dir=$(mktemp -d)
+    local i=1
+    local same=1
+    for file in $(find "$mnt" -type f); do
+        # Create a copy of the file.
+        echo -n .
+        name=$(basename "$file")
+        file2=${dir}/${name}
+        bin/readfile "$dev" "/$name" >"$file2"
+        # Check the files with diff.
+        diff "${file}" "$file2" 2>>"$logfile" >>"$logfile"
+        if [[ $? -ne 0 ]]; then
+            same=0
+        fi
+        i=$[i + 1]
+    done
+    echo
+    if [[ $same -eq 1 ]]; then
+        echo "Success"
+    else
+        echo "Failed"
+    fi
+    cleanup "$mnt" "$loop"
+    rm "$dev"
+}
+
+if [[ $# -lt 1 ]]; then
+    cat >&2 <<EOF
+Usage: $0 [test] <size>
+Where [test] is 'large' (test with a single large file), 'many' (test with many small files) or nothing (perform both tests)
+      <size> is the size in MiB of the filesystem to test with
+EOF
+elif [[ $# -eq 1 ]]; then
+    test1 $1
+    test2 $1
+else
+    case "$1" in
+        large) test1 $2 ;;
+        many)  test2 $2 ;;
+        *)
+            echo "$0: $1: Invalid operation" >&2
+            exit 1
+            ;;
+    esac
+fi

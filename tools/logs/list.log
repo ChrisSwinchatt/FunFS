@@ -1,0 +1,60 @@
+--------------------[ Tue 16 May 19:41:43 BST 2017 ]--------------------
+1024+0 records in
+1024+0 records out
+1073741824 bytes (1.1 GB, 1.0 GiB) copied, 0.561303 s, 1.9 GB/s
+mke2fs 1.43.4 (31-Jan-2017)
+Discarding device blocks:   4096/262144             done                            
+Creating filesystem with 262144 4k blocks and 65536 inodes
+Filesystem UUID: f15e5431-d137-4212-9684-0e6d83f54ba6
+Superblock backups stored on blocks: 
+	32768, 65536, 98304, 131072, 163840, 196608, 229376
+
+Allocating group tables: 0/8   done                            
+Writing inode tables: 0/8   done                            
+Writing superblocks and filesystem accounting information: 0/8   done
+
+--------------------[ Tue 16 May 19:41:51 BST 2017 ]--------------------
+1024+0 records in
+1024+0 records out
+1073741824 bytes (1.1 GB, 1.0 GiB) copied, 0.553319 s, 1.9 GB/s
+mke2fs 1.43.4 (31-Jan-2017)
+Discarding device blocks:   4096/262144             done                            
+Creating filesystem with 262144 4k blocks and 65536 inodes
+Filesystem UUID: 0a8de826-d2c0-4fea-926b-5c3be6c70283
+Superblock backups stored on blocks: 
+	32768, 65536, 98304, 131072, 163840, 196608, 229376
+
+Allocating group tables: 0/8   done                            
+Writing inode tables: 0/8   done                            
+Writing superblocks and filesystem accounting information: 0/8   done
+
+--------------------[ Tue 16 May 19:42:05 BST 2017 ]--------------------
+1024+0 records in
+1024+0 records out
+1073741824 bytes (1.1 GB, 1.0 GiB) copied, 0.564963 s, 1.9 GB/s
+mke2fs 1.43.4 (31-Jan-2017)
+Discarding device blocks:   4096/262144             done                            
+Creating filesystem with 262144 4k blocks and 65536 inodes
+Filesystem UUID: 32adbc46-0f0e-4a27-83b0-794745c4402c
+Superblock backups stored on blocks: 
+	32768, 65536, 98304, 131072, 163840, 196608, 229376
+
+Allocating group tables: 0/8   done                            
+Writing inode tables: 0/8   done                            
+Writing superblocks and filesystem accounting information: 0/8   done
+
+--------------------[ Tue 16 May 19:43:49 BST 2017 ]--------------------
+1024+0 records in
+1024+0 records out
+1073741824 bytes (1.1 GB, 1.0 GiB) copied, 0.554929 s, 1.9 GB/s
+mke2fs 1.43.4 (31-Jan-2017)
+Discarding device blocks:   4096/262144             done                            
+Creating filesystem with 262144 4k blocks and 65536 inodes
+Filesystem UUID: 3c81faf7-997e-4e84-be00-1e6772e9cf66
+Superblock backups stored on blocks: 
+	32768, 65536, 98304, 131072, 163840, 196608, 229376
+
+Allocating group tables: 0/8   done                            
+Writing inode tables: 0/8   done                            
+Writing superblocks and filesystem accounting information: 0/8   done
+
