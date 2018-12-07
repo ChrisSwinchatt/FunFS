@@ -1,9 +1,9 @@
 {-# LANGUAGE RecordWildCards #-}
 module TestLinkedDirectory where
 --
-import Data.Filesystem.FunFS.Ext2.LowLevel.LinkedDirectory
-import Data.Filesystem.FunFS.Util.Serialisable
-import Data.Filesystem.FunFS.Util.SizeOf
+import Data.FileSystem.FunFS.Ext2.LowLevel.LinkedDirectory
+import Data.FileSystem.FunFS.Util.Serialisable
+import Data.FileSystem.FunFS.Util.SizeOf
 import Data.Word
 import Test.QuickCheck
 

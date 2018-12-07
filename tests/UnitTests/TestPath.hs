@@ -1,6 +1,6 @@
 module TestPath where
 --
-import Data.Filesystem.FunFS.Ext2.Path
+import Data.FileSystem.FunFS.Ext2.Path
 import Test.QuickCheck
 
 prop_isEmpty1 :: Bool

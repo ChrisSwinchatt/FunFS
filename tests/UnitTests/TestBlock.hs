@@ -1,6 +1,6 @@
 module TestBlock where
 --
-import Data.Filesystem.FunFS.Ext2.LowLevel.Block
+import Data.FileSystem.FunFS.Ext2.LowLevel.Block
 import Data.Int
 import Data.Word
 import Test.QuickCheck

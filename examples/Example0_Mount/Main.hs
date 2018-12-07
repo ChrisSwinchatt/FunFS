@@ -9,10 +9,10 @@
  -}
 module Main where
 --
-import Data.Filesystem.FunFS (FS)
+import Data.FileSystem.FunFS (FS)
 import System.Environment
 
-import qualified Data.Filesystem.FunFS as FS
+import qualified Data.FileSystem.FunFS as FS
 
 example0 :: FS String
 example0 = do

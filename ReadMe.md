@@ -10,7 +10,7 @@ A PDF version of this file can be found in the `dist/doc` subfolder.
 
 ## Description
 
-`FunFS` (Functional FileSystem) is a functional implementation of the Second Extended Filesystem (Ext2) in Haskell. It features a lazy-evaluated, monadic UNIX-like API which hides the details of the underlying filesystem, allowing replacements to be dropped in at a later time without modifying client code.
+`FunFS` (Functional FileSystem) is a functional implementation of the Second Extended FileSystem (Ext2) in Haskell. It features a lazy-evaluated, monadic UNIX-like API which hides the details of the underlying filesystem, allowing replacements to be dropped in at a later time without modifying client code.
 
 ---
 

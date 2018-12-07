@@ -1,9 +1,9 @@
 {-# LANGUAGE RecordWildCards #-}
 module TestBlockGroupDescriptor where
 --
-import Data.Filesystem.FunFS.Ext2.LowLevel.BlockGroupDescriptor
-import Data.Filesystem.FunFS.Util.Serialisable
-import Data.Filesystem.FunFS.Util.SizeOf
+import Data.FileSystem.FunFS.Ext2.LowLevel.BlockGroupDescriptor
+import Data.FileSystem.FunFS.Util.Serialisable
+import Data.FileSystem.FunFS.Util.SizeOf
 import Test.QuickCheck
 
 import qualified Data.ByteString.Lazy as B

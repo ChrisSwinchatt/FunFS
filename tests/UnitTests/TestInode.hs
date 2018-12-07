@@ -3,9 +3,9 @@ module TestInode where
 --
 import Data.Bits
 import Data.Char
-import Data.Filesystem.FunFS.Ext2.LowLevel.Inode
-import Data.Filesystem.FunFS.Util.Serialisable
-import Data.Filesystem.FunFS.Util.SizeOf
+import Data.FileSystem.FunFS.Ext2.LowLevel.Inode
+import Data.FileSystem.FunFS.Util.Serialisable
+import Data.FileSystem.FunFS.Util.SizeOf
 import Data.Int
 import Data.Word
 import Numeric

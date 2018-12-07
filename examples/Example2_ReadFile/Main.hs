@@ -9,12 +9,12 @@
  -}
 module Main where
 --
-import Data.Filesystem.FunFS (FS)
+import Data.FileSystem.FunFS (FS)
 import Data.Maybe
 import System.Environment
 
 import qualified Data.ByteString.Lazy  as B
-import qualified Data.Filesystem.FunFS as FS
+import qualified Data.FileSystem.FunFS as FS
 
 example2 :: String -> FS B.ByteString
 example2 path = do
