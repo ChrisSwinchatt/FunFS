@@ -40,16 +40,17 @@ The Haskell Platform can be downloaded from <https://www.haskell.org/platform/>.
 | `uuid`             | `1.2.2`    | `1.3`     |
 
 Most of these are distributed with the Haskell Platform. The only ones which should need to be installed manually are:
- * `quickcheck`
- * `uuid`
+
+* `quickcheck`
+* `uuid`
 
 Due to the dependencies on `ghc` and `template-haskell`, which is a `GHC` extension, other Haskell compilers like `hugs` will probably not work.
 
 Once Haskell is installed, any packages can be installed with `cabal`, the Haskell package manager:
 
 ```sh
-$ cabal update
-$ cabal install <package name>
+cabal update
+cabal install <package name>
 ```
 
 ### Library and examples
@@ -57,8 +58,8 @@ $ cabal install <package name>
 Finally, the library and examples can be built with `cabal`:
 
 ```sh
-$ cabal configure
-$ cabal build
+cabal configure
+cabal build
 ```
 
 This builds the library and examples.
@@ -66,41 +67,42 @@ This builds the library and examples.
 ### Running the examples
 
 Before executing the examples we should create an Ext2 filesystem:
+
 ```sh
-$ dd if=/dev/zero of="$device" bs=1M count=64
-$ mke2fs -r0 "$device"
+dd if=/dev/zero of="$device" bs=1M count=64
+mke2fs -r0 "$device"
 ```
 
 This creates a 64 MB filesystem and formats it as Ext2 revision 0. The file can now be used to run the examples:
 
- * `Example0_Mount`
+* `Example0_Mount`
 
     The `mount` example mounts a filesystem and prints the contents of its superblock and block group descriptor table.
 
    ```sh
-   $ dist/build/mount/mount "$device"
+   dist/build/mount/mount "$device"
    ```
 
     Its output can be compared to the output of the `dumpe2fs` command on Linux.
 
- * `Example1_ReadDir`
+* `Example1_ReadDir`
 
    The `readdir` example mounts a filesystem, searches for a path, and lists the contents of the directory named by the path.
 
    ```sh
-   $ dist/build/readdir/readdir "$device" "$path"
+   dist/build/readdir/readdir "$device" "$path"
    ```
 
    Its output can be compared to `ls -al`.
 
-   *Note: To run the real `ls` on <device>, we will need to use UNIX loop devices. This will be explained in the next section.*
+   *Note: To run the real `ls` on &lt;device&gt;, we will need to use UNIX loop devices. This will be explained in the next section.*
 
- * `Example2_ReadFile`
+* `Example2_ReadFile`
 
    The `readfile` example mounts a filesystem, searches for a path, and dumps the contents of the file named by the path.
 
    ```sh
-   $ dist/build/readfile/readfile "$device" "$path"
+   dist/build/readfile/readfile "$device" "$path"
    ```
 
    Its output can be compared with `cat`.
@@ -110,8 +112,8 @@ This creates a 64 MB filesystem and formats it as Ext2 revision 0. The file can 
    To test this example we will need to create a file on the Ext2 filesystem. The following commands create a 'loop-back device' using `losetup` and mount a filesystem using `mount`. (This requires superuser access.)
 
    ```sh
-   $ loop=$(losetup -f "$device")
-   $ mount -o ro "$loop" "$mountpoint"
+   loop=$(losetup -f "$device")
+   mount -o ro "$loop" "$mountpoint"
    ```
 
    **NB**: The `-o ro` flags to `mount` are very important. Without this, the Ext2 driver will update the superblock to revision 1, which is not supported by `FunFS`.
@@ -119,17 +121,17 @@ This creates a 64 MB filesystem and formats it as Ext2 revision 0. The file can 
    A 50 MiB file containing random data is created on the filesystem, which is then unmounted. We also keep a local copy of the file for comparison.
 
    ```sh
-   $ dd if=/dev/urandom of="$mountpoint/foo" bs=1M count=50
-   $ cp "$mountpoint/foo" "bar"
-   $ umount "$loop"
-   $ losetup -d "$loop"
+   dd if=/dev/urandom of="$mountpoint/foo" bs=1M count=50
+   cp "$mountpoint/foo" "bar"
+   umount "$loop"
+   losetup -d "$loop"
    ```
 
   Finally, `readfile` is executed to get the contents of the file and its output is compared to the original file using `diff`.
 
   ```sh
-  $ dist/build/readfile/readfile "$device" "/foo" >foo
-  $ diff foo bar
+  dist/build/readfile/readfile "$device" "/foo" >foo
+  diff foo bar
   ```
 
   The return value of `diff` (`$?`) will be 0 if the files are the same. As `foo` and `bar` are binary files, if their contents are different, `diff` will say `"Binary files differ"`.
@@ -137,6 +139,7 @@ This creates a 64 MB filesystem and formats it as Ext2 revision 0. The file can 
 ---
 
 ## API Documentation
-Documentation for the public interfaces of every module is in the `doc/html` directory. This is automatically-generated HTML documentation pulled directly from source code but is quite detailed and neatly formatted. This can be viewed in the browser at `doc/html/index.html`.
+
+Documentation for the pulic interfaces of every module is in the `doc/html` directory. This is automatically-generated HTML documentation pulled directly from source code but is quite detailed and neatly formatted. This can be viewed in the browser at `doc/html/index.html`.
 
 ---
