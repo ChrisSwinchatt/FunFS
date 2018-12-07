@@ -1,7 +1,7 @@
 {- |
  - Module      : Data.FileSystem.FunFS.API.HandleInfo
  - Description : Handle info. This module exists primarily to break a cylic dependency between
- - Copyright   : (c) 2017 Chris Swinchatt
+ - Copyright   : (c) 2017-2018 Chris Swinchatt
  - License     : MIT
  - Maintainer  : Chris Swinchatt <c.swinchatt1@uni.brighton.ac.uk>
  - Stability   : experimental
@@ -47,9 +47,7 @@ makeHandleInfo user node mode
                                  , hType        = _type
                                  , hOpenMode    = mode
                                  , hPermissions = perms
-                                 , hPosition    = if   mode == Append
-                                                  then size
-                                                  else 0
+                                 , hPosition    = if mode == Append then size else 0
                                  , hSize        = size
                                  }
 

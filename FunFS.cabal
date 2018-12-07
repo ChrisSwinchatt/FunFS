@@ -1,12 +1,12 @@
 name:               FunFS
-version:            0.1.0.0
+version:            0.1.1.0
 synopsis:           Demo Ext2 filesystem implementation in Haskell
 description:		FunFS is a lazy-evaluated, functional implementation of the Ext2 filesystem in Haskell.
 license:            MIT
 license-file:       LICENSE
 author:             Chris Swinchatt
-maintainer:         c.swinchatt1@uni.brighton.ac.uk
-copyright:          (c) 2017 Christopher Swinchatt
+maintainer:         chrisswinchatt@gmail.com
+copyright:          (c) 2017-2018 Christopher Swinchatt
 category:           Data
 build-type:         Simple
 extra-source-files: ChangeLog.md

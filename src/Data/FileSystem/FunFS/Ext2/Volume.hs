@@ -1,7 +1,7 @@
 {- |
  - Module      : Data.FileSystem.FunFS.Ext2.Volume
  - Description : Ext2 volume.
- - Copyright   : (c) 2017 Chris Swinchatt
+ - Copyright   : (c) 2017-2018 Chris Swinchatt
  - License     : MIT
  - Maintainer  : Chris Swinchatt <c.swinchatt1@uni.brighton.ac.uk>
  - Stability   : experimental

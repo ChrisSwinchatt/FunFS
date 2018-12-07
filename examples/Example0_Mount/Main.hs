@@ -1,7 +1,7 @@
 {- |
  - Module      : Main
  - Description : Example0_Mount - Mount a filesystem and print statistics about it on the screen.
- - Copyright   : (c) 2017 Chris Swinchatt
+ - Copyright   : (c) 2017-2018 Chris Swinchatt
  - License     : MIT
  - Maintainer  : Chris Swinchatt <c.swinchatt1@uni.brighton.ac.uk>
  - Stability   : experimental

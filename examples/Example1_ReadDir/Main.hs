@@ -1,7 +1,7 @@
 {- |
  - Module      : Main
  - Description : Example1_ReadDir - List the contents of a directory.
- - Copyright   : (c) 2017 Chris Swinchatt
+ - Copyright   : (c) 2017-2018 Chris Swinchatt
  - License     : MIT
  - Maintainer  : Chris Swinchatt <c.swinchatt1@uni.brighton.ac.uk>
  - Stability   : experimental

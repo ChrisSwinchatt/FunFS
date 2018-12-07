@@ -1,7 +1,7 @@
 {- |
  - Module      : Data.FileSystem.FunFS.Ext2.DirEntry
  - Description : Directory entries.
- - Copyright   : (c) 2017 Chris Swinchatt
+ - Copyright   : (c) 2017-2018 Chris Swinchatt
  - License     : MIT
  - Maintainer  : Chris Swinchatt <c.swinchatt1@uni.brighton.ac.uk>
  - Stability   : experimental
@@ -29,11 +29,11 @@ data DirEntry = DirEntry { getEntryNode :: Node
 -- boundaries.
 makeDirEntry :: Volume -> LinkedDirectory -> Maybe DirEntry
 makeDirEntry vol ld
-    | num == 0 =   Nothing
-    | otherwise =   let node = getNodeByInum vol num
-                        len  = fromIntegral $ dNameLen ld
-                        name = dName ld
-                    in  Just $ DirEntry node $ arrayToString name len
+    | num == 0  = Nothing
+    | otherwise = let node = getNodeByInum vol num
+                      len  = fromIntegral $ dNameLen ld
+                      name = dName ld
+                  in  Just $ DirEntry node $ arrayToString name len
     where num = fromIntegral $ dInode ld
 
 ------------------------------------------------------------------------------------------------------------------------
