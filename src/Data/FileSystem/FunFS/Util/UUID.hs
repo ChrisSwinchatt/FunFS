@@ -1,9 +1,9 @@
 {- |
  - Module      : Data.FileSystem.FunFS.Util.UUID
  - Description : Generate Version 4 UUIDs in the IO monad.
- - Copyright   : (c) 2017-2018 Chris Swinchatt
+ - Copyright   : (c) 2017-2019 Chris Swinchatt
  - License     : MIT
- - Maintainer  : Chris Swinchatt <c.swinchatt1@uni.brighton.ac.uk>
+ - Maintainer  : Chris Swinchatt <chris@swinchatt.dev>
  - Stability   : experimental
  - Portability : portable
  -}

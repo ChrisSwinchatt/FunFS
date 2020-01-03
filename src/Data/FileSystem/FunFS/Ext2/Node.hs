@@ -1,9 +1,9 @@
 {- |
  - Module      : Data.FileSystem.FunFS.Ext2.Node
  - Description : I/O operations on node.
- - Copyright   : (c) 2017-2018 Chris Swinchatt
+ - Copyright   : (c) 2017-2019 Chris Swinchatt
  - License     : MIT
- - Maintainer  : Chris Swinchatt <c.swinchatt1@uni.brighton.ac.uk>
+ - Maintainer  : Chris Swinchatt <chris@swinchatt.dev>
  - Stability   : experimental
  - Portability : portable
  -}

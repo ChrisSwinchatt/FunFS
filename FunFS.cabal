@@ -6,7 +6,7 @@ license:            MIT
 license-file:       LICENSE
 author:             Chris Swinchatt
 maintainer:         chrisswinchatt@gmail.com
-copyright:          (c) 2017-2018 Christopher Swinchatt
+copyright:          (c) 2017-2019 Christopher Swinchatt
 category:           Data
 build-type:         Simple
 extra-source-files: ChangeLog.md

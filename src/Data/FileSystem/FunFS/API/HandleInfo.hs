@@ -1,9 +1,9 @@
 {- |
  - Module      : Data.FileSystem.FunFS.API.HandleInfo
  - Description : Handle info. This module exists primarily to break a cylic dependency between
- - Copyright   : (c) 2017-2018 Chris Swinchatt
+ - Copyright   : (c) 2017-2019 Chris Swinchatt
  - License     : MIT
- - Maintainer  : Chris Swinchatt <c.swinchatt1@uni.brighton.ac.uk>
+ - Maintainer  : Chris Swinchatt <chris@swinchatt.dev>
  - Stability   : experimental
  - Portability : portable
  -}
