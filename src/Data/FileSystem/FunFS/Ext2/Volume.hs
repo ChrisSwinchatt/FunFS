@@ -39,9 +39,9 @@ mountVolume :: B.ByteString -> Volume
 mountVolume bs
     | B.length (B.take volumeMinimumSize bs) < volumeMinimumSize = error eDeviceTooSmall
     | otherwise = Volume { superBlock = sb
-                        , blockList  = bl
-                        , bgdTable   = readBGDTable sb bl
-                        }
+                         , blockList  = bl
+                         , bgdTable   = readBGDTable sb bl
+                         }
     where sb    = readSuperBlock bs
           n     = fromIntegral $ sBlocksCount sb
           bsize = fromIntegral $ getBlockSize sb
@@ -50,14 +50,14 @@ mountVolume bs
 -- Read the block group descriptor table.
 readBGDTable :: SuperBlock -> [Block] -> BGDTable
 readBGDTable sb blocks = BGDTable descs
-   where   first   = fromIntegral $ sFirstDataBlock  sb + 1  -- First block of BGD table immediately follows superblock
-           bsize   = fromIntegral $ getBlockSize     sb
-           dcount  = fromIntegral $ countBlockGroups sb
-           dsize   = fromIntegral sizeOfBGD
-           bcount  = fromIntegral $ 1 + ((dcount*dsize) `div` bsize) -- Number of blocks containing the BGD table.
-           blocks' = take bcount $ drop first blocks                 -- List of blocks containing the BGD table.
-           dPerB   = bsize `div` dsize                               -- Number of descriptors per block.
-           descs   = take dcount $ concatMap (\b -> take dPerB $ peekObjects b 0) blocks'
+   where first   = fromIntegral $ sFirstDataBlock  sb + 1  -- First block of BGD table immediately follows superblock
+         bsize   = fromIntegral $ getBlockSize     sb
+         dcount  = fromIntegral $ countBlockGroups sb
+         dsize   = fromIntegral sizeOfBGD
+         bcount  = fromIntegral $ 1 + ((dcount*dsize) `div` bsize) -- Number of blocks containing the BGD table.
+         blocks' = take bcount $ drop first blocks                 -- List of blocks containing the BGD table.
+         dPerB   = bsize `div` dsize                               -- Number of descriptors per block.
+         descs   = take dcount $ concatMap (\b -> take dPerB $ peekObjects b 0) blocks'
 
 -- | Get an inode by number.
 getInode :: Volume -> Int -> Inode
@@ -74,7 +74,8 @@ getInode vol inum
            - contains the inode and the offset of the inode relative to that block, giving us the absolute block address
            - and block-relative offset at which the inode table entry resides.
            -
-           - 1. Inputs:               let   ipg = 128               (inodes per group)
+           - 1. Inputs (example values):
+           -                          let   ipg = 128               (inodes per group)
            -                              isize = 128               (inode size)
            -                              bsize = 4096              (block size)
            -                               inum = 64 - 1            (convert 1-based inode number to 0-based index)
@@ -94,7 +95,7 @@ getInode vol inum
           itable = fromIntegral $ bgInodeTable $ descs !! bg
           {- 4. Get itable block index:          bsize    4096
            -    (a) Inodes per block:      ipb = -----  = ---- = 32
-           -                                     isize   128
+           -                                     isize    128
            -}
           ipb = bsize `div` isize
           {-                                     inum     63
