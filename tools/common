@@ -1,5 +1,7 @@
 #!/bin/bash
 
+here=$(dirname "$0")
+
 # Create a file of size $1 MiB which contains an Ext2 rev. 0 filesystem.
 # Returns the name of the file.
 function makefs {
@@ -38,6 +40,6 @@ function create_file {
     echo "$file"
 }
 
-logfile="logs/$0.log"
+logfile="logs/$here.log"
 
 echo "--------------------[ $(date) ]--------------------" >>"$logfile"

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd $(dirname "$0")
+
 . common
 
 echo "Creating 1 GiB filesystem"
