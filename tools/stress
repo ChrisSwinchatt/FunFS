@@ -2,8 +2,6 @@
 
 cd $(dirname "$0")
 
-set -e
-
 . common
 
 function test1 {
@@ -22,12 +20,18 @@ function test1 {
     # Remount the filesystem and read back the file.
     echo "Reading back file"
     local file2=$(mktemp)
-    local name=$(basename "$file1")
-    time valgrind bin/readfile "$dev" "/$name" >"$file2" 2>>"$logfile"
+    local filename=$(basename "$file1")
+    bin/readfile "$dev" "/$filename" >"$file2"
+    if [[ $? -ne 0 ]]; then
+        echo "$name: Fatal error" >&2
+        cleanup "$mnt" "$loop"
+        rm "$dev"
+        exit 1
+    fi
     if diff "$file1" "$file2"; then
-        echo "Success"
+        echo "$name: Success"
     else
-        echo "Failed"
+        echo "$name: Failed"
     fi
     cleanup "$mnt" "$loop" 2>>"$logfile"
     rm "$dev"
@@ -56,9 +60,15 @@ function test2 {
     for file in $(find "$mnt" -type f); do
         # Create a copy of the file.
         echo -n .
-        name=$(basename "$file")
-        file2=${dir}/${name}
-        bin/readfile "$dev" "/$name" >"$file2"
+        filename=$(basename "$file")
+        file2=${dir}/${filename}
+        bin/readfile "$dev" "/$filename" >"$file2"
+        if [[ $? -ne 0 ]]; then
+            echo "$name: Fatal error" >&2
+            cleanup "$mnt" "$loop"
+            rm "$dev"
+            exit 1
+        fi
         # Check the files with diff.
         diff "${file}" "$file2" 2>>"$logfile" >>"$logfile"
         if [[ $? -ne 0 ]]; then
@@ -83,12 +93,12 @@ Where [test] is 'large' (test with a single large file), 'many' (test with many 
       <size> is the size in MiB of the filesystem to test with
 EOF
 elif [[ $# -eq 1 ]]; then
-    test1 $1
-    test2 $1
+    time test1 $1
+    time test2 $1
 else
     case "$1" in
-        large) test1 $2 ;;
-        many)  test2 $2 ;;
+        large) time test1 $2 ;;
+        many)  time test2 $2 ;;
         *)
             echo "$0: $1: Invalid operation" >&2
             exit 1
