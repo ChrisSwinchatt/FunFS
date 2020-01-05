@@ -1,4 +1,5 @@
-dist
+dist/
+doc/
 dist-*
 cabal-dev
 **.o
@@ -21,11 +22,11 @@ cabal.project.local~
 .HTF/
 .ghc.environment.*
 
-doc/
+tools/bin/
+tools/logs/
 
 **.log
 **.zip
-tools/bin
 **.gz
 **.bz2
 **.tar
